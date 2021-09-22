@@ -155,7 +155,7 @@ IDEntryDialog::IDEntryDialog(QWidget *parent)
 #ifdef WITH_QDEBUG
               qDebug() << "system command: " << commandStream.join(" ");
 #endif
-              system( commandStream.join(" ").toStdString().c_str() );
+              m_systemReturnValue = system( commandStream.join(" ").toStdString().c_str() );
             }
           }
         }

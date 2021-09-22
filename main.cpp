@@ -15,5 +15,5 @@ int main(int argc, char *argv[])
   IDEntryDialog dialog;
   dialog.show();
   app.exec();
-  return 0;
+  return dialog.getSystemReturnValue();
 }

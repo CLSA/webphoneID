@@ -18,11 +18,13 @@ public:
 
     QString getName() const {return m_username;}
     QString getPassword() const {return m_password;}
+    int getSystemReturnValue() const {return m_systemReturnValue;}
 
 private:
     Ui::IDEntryDialog *ui;
     QString m_username;
     QString m_password;
     QMap<QString,QString> m_settingsMap;
+    int m_systemReturnValue;
 };
 #endif // IDENTRYDIALOG_H
