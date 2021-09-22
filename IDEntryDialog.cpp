@@ -11,10 +11,7 @@
 #include <QPushButton>
 #include <QSettings>
 
-// UNCOMMENT TO SHOW DEBUG INFO VIA qDebug() << "someinfo";
-#define DEBUG_CLI
-
-#ifdef DEBUG_CLI
+#ifdef WITH_QDEBUG
   #include <QDebug>
 #endif
 
@@ -81,7 +78,7 @@ IDEntryDialog::IDEntryDialog(QWidget *parent)
           QString auth = "Authorization: Basic ";
           auth.append(userPass.toUtf8().toBase64());
 
-#ifdef DEBUG_CLI
+#ifdef WITH_QDEBUG
           qDebug() << "authorization string: " << auth;
 #endif
 
@@ -123,7 +120,7 @@ IDEntryDialog::IDEntryDialog(QWidget *parent)
             QJsonDocument jsonDoc = QJsonDocument::fromJson(readBuffer,&jsonErr);
             QJsonObject jsonObj = jsonDoc.object();
 
-#ifdef DEBUG_CLI
+#ifdef WITH_QDEBUG
             qDebug() << "readbuffer: " << readBuffer;
             qDebug() << "as compact json: " << jsonDoc.toJson(QJsonDocument::Indented);
 #endif
@@ -155,7 +152,7 @@ IDEntryDialog::IDEntryDialog(QWidget *parent)
                     commandStream << QString("%1:%2").arg(key,m_settingsMap[key]);
               }
 
-#ifdef DEBUG_CLI
+#ifdef WITH_QDEBUG
               qDebug() << "system command: " << commandStream.join(" ");
 #endif
               system( commandStream.join(" ").toStdString().c_str() );

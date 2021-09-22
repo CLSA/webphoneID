@@ -12,6 +12,8 @@ set( CMAKE_AUTOUIC ON )
 # Look in the build directory for cmake modules
 SET( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/" )
 
+option(WITH_DEBUG "Use qDebug in source for debugging" OFF)
+
 find_package( Qt5 COMPONENTS Widgets REQUIRED )
 find_package( CURL REQUIRED )
 
@@ -27,4 +29,10 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/webphone.jar
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/settings.ini
      DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
+if(WITH_DEBUG)
+  target_compile_definitions(webphoneID PRIVATE -DWITH_QDEBUG)
+endif()
+
 target_link_libraries( webphoneID PRIVATE Qt5::Widgets curl )
+
+install(TARGETS webphoneID RUNTIME DESTINATION bin)
