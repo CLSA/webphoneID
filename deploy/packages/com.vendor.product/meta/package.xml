@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+	<DisplayName>Webphone ID</DisplayName>
+	<Description>Webphone ID components (exe,ini,jar)</Description>
+	<Version>1.0.0</Version>
+	<ReleaseDate>2021-09-23</ReleaseDate>
+    <Licenses>
+        <License name="GNU GENERAL PUBLIC LICENSE Version 3" file="gpl3.txt"/>
+    </Licenses>
+	<Default>true</Default>
+	<Script>script.qs</Script>
+</Package>

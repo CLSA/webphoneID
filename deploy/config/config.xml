@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+	<Name>CLSA Webphone</Name>
+	<Version>1.0.0</Version>
+	<Title>CLSA Webphone Installer</Title>
+	<Publisher>CLSA</Publisher>
+	<StartMenuDir>CLSA Webphone</StartMenuDir>
+	<TargetDir>@ApplicationsDir@/CLSA Webphone</TargetDir>
+</Installer>

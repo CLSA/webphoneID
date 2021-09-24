@@ -1,0 +1,36 @@
+Buidling for Windows 7 (dynamic linking)
+- requires Visual Studio 2019
+- CMake (3.21.3)
+- Qt5 (5.15.2)
+- QtInstallerFramework 4.0.1
+- ImageMagick
+- use vcpkg to download and build shared libraries for curl and zlib
+
+- in CMake GUI set source dir and build dir
+- select optional platform for generator as Win32
+- select specify toolchain file for cross-compiling C:/files/vcpkg/scripts/buildsystems/vcpkg.cmake
+- configure all options as needed in CMake GUI and generate VS solution
+- open VS solution and Build Release
+
+Adding application Icon
+- use a 512x512 png icon for the application exe
+- reduce by 50%, 6.25% 3.125% to generate 256 32 and 16 png versions
+- compile into single ico file with
+magick.exe convert icon-16.png icon-32.png icon-256.png icon.ico 
+- in VS, create a .rc resource file wih the .ico 
+- move the .rc file from the project solution for webphoneID to the source
+  directory of webphoneID (in not already provided)
+  
+Creating installer
+- create a folders "C:\files\deploy\webphoneID" "C:\files\deploy\webphoneIDpackage"
+- set environment var with c:\files\deploy\webphoneID>set VCINSTALLDIR=C:\Program Files (x86)\Microsoft Vis
+ual Studio\2019\Community\VC
+- run windeployqt --release --compiler-runtime --dir c:\files\deploy\webphoneID
+  to copy the VS release build dependencies (Qt5Core etc.) and vs_redist.x86.exe
+- copy the curl and zlib dlls, webphone.jar, settings.ini, webphoneID.exe to 
+  c:\files\deploy\webphoneID
+- copy the subdirs in webphoneID repo deploy directory to  C:\files\deploy\webphoneIDpackage
+  and copy all the binaries and other files and subdirs in c:\files\deploy\webphoneID
+  to c:\files\deploy\webphoneID\packages\data
+- run C:\path_do_qt_installer_framework_bin\binarrycreator.ext --offline-only
+ -c config/config.xml -p packages webphoneIDInstaller.exe
